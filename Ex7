@@ -1,0 +1,84 @@
+package Ex7;
+
+// Classe para testar os funcionários e o polimorfismo
+public class TesteFuncionarios {
+    public static void main(String[] args) {
+        Funcionario gerente = new Gerente("Ana Silva", 8000);
+        Funcionario desenvolvedor = new Desenvolvedor("Carlos Souza", 5000);
+
+        // Exibir detalhes e bônus dos funcionários
+        gerente.exibirDetalhes();
+        System.out.println("Bônus: R$ " + gerente.calcularBonus());
+        System.out.println();
+
+        desenvolvedor.exibirDetalhes();
+        System.out.println("Bônus: R$ " + desenvolvedor.calcularBonus());
+    }
+}
+
+______________________________
+package Ex7;
+
+public class Funcionario {
+    private String nome;
+    private double salario;
+
+
+    public Funcionario(String nome, double salario) {
+        this.nome = nome;
+        this.salario = salario;
+    }
+
+    public void exibirDetalhes() {
+        System.out.println("Nome do funcionario: " + nome);
+        System.out.println("Salário do funcionario: " + salario);
+    }
+
+    public double calcularBonus() {
+        return salario * 0.10;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public double getSalario() {
+        return salario;
+    }
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+}
+____________________________
+
+package Ex7;
+
+
+public class Gerente extends Funcionario {
+    public Gerente(String nome, double salario) {
+        super(nome, salario);
+    }
+
+    @Override
+    public double calcularBonus() {
+        return getSalario() * 0.20;  // Bônus de 20%
+    }
+}
+___________________________
+
+package Ex7;
+
+// classe desenvolvedor que herda de funcionario
+public class Desenvolvedor extends Funcionario {
+    public Desenvolvedor(String nome, double salario) {
+        super(nome, salario);
+    }
+
+    @Override
+    public double calcularBonus() {
+        return getSalario() * 0.15;  // Bônus de 15%
+    }
+}
