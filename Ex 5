@@ -1,0 +1,76 @@
+package Ex5;
+
+public class TestePagamento {
+    public static void main(String[] args) {
+        Pagamento pagamento1 = new PagamentoCartao(100.0);
+        Pagamento pagamento2 = new PagamentoBoleto(200.0);
+
+        pagamento1.exibirDetalhes();
+        System.out.println("----------------------");
+        pagamento2.exibirDetalhes();
+    }
+}
+
+_________________________________________
+
+package Ex5;
+
+public class PagamentoCartao extends Pagamento {
+    private static final double TAXA = 0.02; // 2% de taxa
+
+
+    public PagamentoCartao(double valor) {
+        super(valor);
+    }
+
+    @Override
+    public double calcularValor() {
+        return valor + (valor * TAXA);
+    }
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Pagamento via Cartão:");
+        super.exibirDetalhes();
+        System.out.println("Valor com taxa de 2%: R$ " + calcularValor());
+    }
+}
+____________________________________________
+
+package Ex5;
+
+public class PagamentoBoleto extends Pagamento {
+
+    public PagamentoBoleto(double valor) {
+        super(valor);
+    }
+
+    @Override
+    public double calcularValor() {
+        return valor;
+    }
+
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Pagamento via Boleto:");
+        super.exibirDetalhes();
+        System.out.println("Valor final: R$ " + calcularValor());
+    }
+}
+
+_________________________________________
+
+package Ex5;
+
+public abstract class Pagamento {
+    protected double valor;
+
+    public Pagamento(Double valor) {
+        this.valor = valor;
+    }
+    public abstract double calcularValor();
+    public void exibirDetalhes() {
+        System.out.println("Valor a ser pago: " + valor);
+
+    }
+
+}
