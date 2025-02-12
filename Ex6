@@ -1,0 +1,87 @@
+package Ex6;
+
+public class TesteFormas {
+    public static void main(String[] args) {
+        // Criando instâncias das formas geométricas usando polimorfismo
+        Forma retangulo = new Retangulo(5, 10);
+        Forma triangulo = new Triangulo(6, 8);
+        Forma circulo = new Circulo(7);
+
+        // Mostra as áreas diretamente chamando calcularArea()
+        System.out.println("Área do Retângulo: " + retangulo.calcularArea());
+        System.out.println("Área do Triângulo: " + triangulo.calcularArea());
+        System.out.println("Área do Círculo: " + circulo.calcularArea());
+    }
+}
+
+______________________
+
+package Ex6;
+
+public interface Forma {
+    double calcularArea();
+}
+_______________________
+
+package Ex6;
+
+public class Circulo implements Forma {
+    private double raio;
+    private static final double PI = 3.1416;
+
+    // construtor
+    public Circulo(double raio) {
+        this.raio = raio;
+    }
+    // Implementacao do metodo
+    @Override
+    public double calcularArea() {
+        return PI * raio * raio;
+    }
+
+}
+
+______________________
+
+package Ex6;
+
+public class Triangulo implements Forma {
+    private double base;
+    private double altura;
+
+    // construtor
+    public Triangulo(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    // implementacao do metodo
+    @Override
+    public double calcularArea() {
+        return (base * altura) / 2;
+    }
+
+
+}
+________________________
+
+package Ex6;
+
+public class Retangulo implements Forma {
+    private double base;
+    private double altura;
+
+    // construtor
+    public Retangulo(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    // implementacao do metodo
+    @Override
+    public double calcularArea() {
+        return base * altura;
+    }
+
+
+}
